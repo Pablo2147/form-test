@@ -1,0 +1,74 @@
+.container {
+  margin: 0 auto;
+  min-height: calc(100vh - 116px);
+  padding: 16px;
+  width: 80%;
+
+  .mat-card {
+    text-align: center;
+    padding-bottom: 30px;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+
+    mat-card-content{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .input-container {
+      width: 50%;
+    }
+
+    .input-container-100 {
+      width: 100%;
+    }
+
+    .input-one-column {
+      width: 95%;
+    }
+
+    .input-two-columns {
+      width: 90%;
+    }
+
+    .mat-card-actions {
+      button {
+          width: 200px;
+      }
+    }
+  }
+
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        .form-container {
+            flex-direction: column;
+
+            .input-container {
+                width: 100%;
+            }
+
+            .input-two-columns {
+                width: 95%;
+            }
+            
+            .mat-card-actions {
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                button {
+                    margin: 5px 0;
+                    width: 92%;
+                }
+            }
+        }
+
+    }
+ }

@@ -1,0 +1,113 @@
+<div class="container" *ngIf="!isLoading">
+  <mat-card>
+    <mat-card-title>Create a new Customer</mat-card-title>
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" class="form-container">
+    <mat-card-content>
+        <p class="input-container">
+          <mat-form-field appearance="outline" class="input-two-columns">
+            <mat-label>First Name</mat-label>
+            <input formControlName="firstName" type="text" autocomplete="off" matInput />
+            <mat-error *ngIf="customerForm.get('firstName')?.hasError('required')">First Name is required</mat-error>
+            <mat-error *ngIf="customerForm.get('firstName')?.hasError('maxlength')">First Name exceeds the maximum length</mat-error>
+            <mat-error *ngIf="customerForm.get('firstName')?.hasError('pattern')">First Name invalid</mat-error>
+          </mat-form-field>
+        </p>
+
+        <p class="input-container">
+          <mat-form-field appearance="outline" class="input-two-columns">
+            <mat-label>Last Name</mat-label>
+            <input formControlName="lastName" type="text" autocomplete="off" matInput />
+            <mat-error *ngIf="customerForm.get('lastName')?.hasError('required')">Last Name is required</mat-error>
+            <mat-error *ngIf="customerForm.get('lastName')?.hasError('maxlength')">Last Name exceeds the maximum length</mat-error>
+            <mat-error *ngIf="customerForm.get('lastName')?.hasError('pattern')">Last Name invalid</mat-error>
+          </mat-form-field>
+        </p>
+
+        <p class="input-container">
+          <mat-form-field appearance="outline" class="input-two-columns">
+            <mat-label>Birthday MM/DD/YYYY</mat-label>
+            <input formControlName="birthday" autocomplete="off" matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="customerForm.get('birthday')?.hasError('required')">Birthday is required</mat-error>
+            <mat-error *ngIf="customerForm.get('birthday')?.hasError('matDatepickerMin')">
+              Invalid minimum date.
+            </mat-error>
+            <mat-error *ngIf="customerForm.get('birthday')?.hasError('matDatepickerMax')">
+              Invalid maximum date.
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p class="input-container">
+          <mat-form-field appearance="outline" class="input-two-columns">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                {{ gender.viewValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="customerForm.get('gender')?.hasError('required')">Gender is required</mat-error>
+          </mat-form-field>
+        </p>
+
+        <p class="input-container">
+          <mat-form-field appearance="outline" class="input-two-columns">
+            <mat-label>Cellphone</mat-label>
+            <input formControlName="cellphone" type="number" autocomplete="off" matInput />
+            <mat-error *ngIf="customerForm.get('cellphone')?.hasError('required')">Cellphone is required</mat-error>
+            <mat-error *ngIf="customerForm.get('cellphone')?.hasError('pattern')">Cellphone invalid</mat-error>
+          </mat-form-field>
+        </p>
+
+        <p class="input-container">
+          <mat-form-field appearance="outline" class="input-two-columns">
+            <mat-label>Home phone</mat-label>
+            <input formControlName="homephone" type="number" autocomplete="off" matInput />
+            <mat-error *ngIf="customerForm.get('homephone')?.hasError('required')">Home phone is required</mat-error>
+            <mat-error *ngIf="customerForm.get('homephone')?.hasError('pattern')">Home phone invalid</mat-error>
+          </mat-form-field>
+        </p>
+
+        <p class="input-container-100">
+          <mat-form-field appearance="outline" class="input-one-column">
+            <mat-label>Address Home</mat-label>
+            <input formControlName="address" type="text" autocomplete="off" matInput />
+            <mat-error *ngIf="customerForm.get('address')?.hasError('required')">Address Home is required</mat-error>
+            <mat-error *ngIf="customerForm.get('address')?.hasError('maxlength')">Address Home exceeds the maximum length</mat-error>
+          </mat-form-field>
+        </p>
+
+        <p class="input-container">
+          <mat-form-field appearance="outline" class="input-two-columns">
+            <mat-label>Profession</mat-label>
+            <input formControlName="profession" type="text" autocomplete="off" matInput />
+            <mat-error *ngIf="customerForm.get('profession')?.hasError('required')">Profession is required</mat-error>
+            <mat-error *ngIf="customerForm.get('profession')?.hasError('maxlength')">Profession exceeds the maximum length</mat-error>
+            <mat-error *ngIf="customerForm.get('profession')?.hasError('pattern')">Profession invalid</mat-error>
+          </mat-form-field>
+        </p>
+
+        <p class="input-container">
+          <mat-form-field appearance="outline" class="input-two-columns">
+            <mat-label>Incomes</mat-label>
+            <input formControlName="incomes" type="text" autocomplete="off" matInput mask="separator.0"
+            prefix="$"
+            thousandSeparator="." />
+            <mat-error *ngIf="customerForm.get('incomes')?.hasError('required')">Incomes is required</mat-error>
+            <mat-error *ngIf="customerForm.get('incomes')?.hasError('pattern')">Incomes exceeds the maximum length</mat-error>
+          </mat-form-field>
+        </p>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button type="submit" [disabled]="customerForm.invalid" mat-raised-button color="primary">ADD</button>
+        <button type="button" (click)="onCancelReset()" mat-raised-button color="warn">CANCEL</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
+<app-spinner *ngIf="isLoading"></app-spinner>
