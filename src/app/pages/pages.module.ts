@@ -39,4 +39,4 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
   ],
   exports: [RegisterComponent],
 })
-export class PagesModule {}
+export class PagesModule { }

@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
 
   isLoading: Boolean;
 
-  constructor( private formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
+  constructor(private formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
     // Set the minimum age to 18 years and the maximum to 80 years.
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 80, new Date().getMonth(), new Date().getDate());
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
     this.initForm();
 
     // simulate page load
-    setTimeout( () => {
+    setTimeout(() => {
       this.isLoading = false;
     }, 2000);
   }
@@ -82,15 +82,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if(this.customerForm.valid){
+    if (this.customerForm.valid) {
       // simulate call to api to save data
-    this.isLoading = true;  
-    setTimeout( () => {
-      this.onCancelReset();
-      this.isLoading = false;
-      this._snackBar.open('New Customer Added!', 'Close');
-    }, 2000);
-      
+      this.isLoading = true;
+      setTimeout(() => {
+        this.onCancelReset();
+        this.isLoading = false;
+        this._snackBar.open('New Customer Added!', 'Close');
+      }, 2000);
+
     }
   }
 
